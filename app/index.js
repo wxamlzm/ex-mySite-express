@@ -1,19 +1,21 @@
 // 引入express
-const express = require('express');
-const bodyParser = require('body-parser');
-// 引入mongo配置文件
-const mongo = require('./config/db');
-// 引入路由文件
-const routes = require('./router');
-const app = new express();
+const express = require('express')
+// 定义应用
+const app = new express()
+// 引入路由
+const routes = require('./router')
+// 引入数据库连接
+const mongo = require('./config/db')
+// 定义端口
+const port = 3000
 
-// 使用mongo配置文件
-mongo(app);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-//  使用路由配置文件
-routes(app);
-
-app.listen(3000, () => {
-    console.log('server listen at 3000');
-});
+// 将post请求数据解析为对象
+app.use(express.urlencoded({ extended: false }))
+// 应用数据库
+mongo(app)
+// 挂载路由
+routes(app)
+// 创建服务
+app.listen(port, () => {
+  console.log(`server listen at ${3000}`)
+})

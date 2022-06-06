@@ -1,16 +1,13 @@
-const mongoose = require('mongoose');
-const { Schema, model } = mongoose;
-
-// const Schema = mongoose.Schema;
-// const model = mongoose.model;
+const mongoose = require('mongoose')
+const { Schema, model } = mongoose
 
 const UserSchema = new Schema({
-    username: { type: String, require: true },
-    password: { type: String, require: true },
-    name: { type: String, require: true },
-    isAdmin: { type: String, default: '0' }, // 身份 1->管理员； 0->普通用户
-});
+  userName: { type: String, require: true },
+  passWord: { type: String, require: true },
+  nickName: { type: String, require: true },
+  isAdmin: { type: String, default: '0' }
+})
 
-const User = model('User', UserSchema);
+const User = model('User', UserSchema)
 
-module.exports = User;
+module.exports = User
