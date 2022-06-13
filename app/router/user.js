@@ -3,6 +3,9 @@ const express = require('express');
 const User = require('../model/User');
 const router = express.Router();
 
+// 密码加盐
+const salt = '';
+
 // 查询接口
 router.get('/', async (req, res) => {
     const list = await User.find();
@@ -15,6 +18,8 @@ router.post('/register', async (req, res) => {
     if (user) {
         return res.status(409).send('该用户已存在');
     }
+    req.body.password = setEncode(req.body.password, salt);
+
     const newUser = await new User(req.body).save();
     res.send(newUser);
 });
@@ -26,11 +31,18 @@ router.post('/login', async (req, res) => {
         return res.status(422).send('该用户不存在');
     }
     // 用户存在，判断密码
-    if (req.body.password !== user.password) {
+    // if (req.body.password !== user.password) {
+    //     return res.status(422).send('密码错误');
+    // } else {
+    //     res.send('token');
+    // }
+    // 解密
+    let isPassword = constrast(req.body.password, user.password, salt);
+    if (!isPassword) {
         return res.status(422).send('密码错误');
-    } else {
-        res.send('token');
     }
+
+    res.send(user);
 });
 
 module.exports = router;
