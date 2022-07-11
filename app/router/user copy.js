@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
 // 引入数据库表
 const User = require('../model/User');
 const router = express.Router();
@@ -44,7 +43,7 @@ router.post('/register', async (req, res) => {
     if (user) {
         return res.status(409).send('该用户已存在');
     }
-    // req.body.password = setEncode(req.body.password, salt);
+    req.body.password = setEncode(req.body.password, salt);
 
     const newUser = await new User(req.body).save();
     res.send(newUser);
@@ -63,14 +62,13 @@ router.post('/login', async (req, res) => {
     //     res.send('token');
     // }
     // 解密
-    // let isPassword = constrast(req.body.password, user.password, salt);
-    let isPassword = bcrypt.compareSync(req.body.password, user.password);
+    let isPassword = constrast(req.body.password, user.password, salt);
     if (!isPassword) {
         return res.status(422).send('密码错误');
     }
 
     // res.send(user);
-    const token = user._id + '.' + user.username
+    const token = user._id + '.' + user.username;
     res.send(token);
 });
 // 验证
