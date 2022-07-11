@@ -1,3 +1,4 @@
+// 测试模型，用于记录注册用户
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
