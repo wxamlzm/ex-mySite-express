@@ -1,4 +1,4 @@
 const express = require('express');
 
 const Motivation = require('../model/Motivation');
-const router = express.router();
+const router = express.Router();
