@@ -15,10 +15,16 @@ const handleUserRegister = async (req, res) => {
   const newUser = await new User(req.body).save()
   res.send(newUser)
 }
+// 登陆方法
+handleUserLogin = async (req, res) => {
+  console.log(res)
+}
 
 // 查询接口
 router.get('/', getUserList)
 // 注册接口
 router.post('/register', handleUserRegister)
+// 登陆接口
+router.post('/login', handleUserLogin)
 
 module.exports = router
