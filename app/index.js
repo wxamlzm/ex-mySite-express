@@ -7,7 +7,7 @@ const routes = require('./router')
 // 引入数据库连接
 const mongo = require('./config/db')
 // 定义端口
-const port = 3000
+const port = 3333
 
 // 将post请求数据解析为对象
 app.use(express.urlencoded({ extended: false }))
@@ -16,6 +16,4 @@ mongo(app)
 // 挂载路由
 routes(app)
 // 创建服务
-app.listen(port, () => {
-  console.log(`server listen at ${3000}`)
-})
+app.listen(port, () => console.log(`server listen at ${port}`))
