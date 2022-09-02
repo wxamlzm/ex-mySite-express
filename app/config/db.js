@@ -8,8 +8,6 @@ module.exports = app => {
   mongoose.connect(
     mongdbUrl,
     { useNewUrlParser: true, useUnifiedTopology: true },
-    () => {
-      console.log('mongodb connect')
-    }
+    () => console.log('mongodb connect')
   )
 }

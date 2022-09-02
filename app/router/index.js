@@ -1,5 +1,3 @@
 const userRouter = require('./user')
 
-module.exports = app => {
-  app.use('/user', userRouter)
-}
+module.exports = app => app.use('/user', userRouter)
