@@ -1,7 +1,12 @@
-const userRouter = require('./user');
-const motiveRouter = require('./motive');
+/*
+ * @Author: zd
+ * @Date: 2022-10-08 18:48:30
+ * @LastEditors: zd
+ * @LastEditTime: 2022-10-08 18:57:23
+ * @Description:
+ */
+const userRouter = require('./user')
 
 module.exports = app => {
-    app.use('/user', userRouter);
-    app.use('/motive', motiveRouter);
-};
+  app.use('/user', userRouter)
+}
